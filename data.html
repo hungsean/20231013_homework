@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        /* 
+        {
+            "title": "title1",
+            "description": "description1",
+            "image": "image1",
+            "answers": {
+                "type": "cloze",
+                "options": null
+            },
+            "correct": "correct1"
+        },
+        */
+        /*
+        {
+            "title": "title2",
+            "description": "description2",
+            "image": "image2",
+            "answers": {
+                "type": "MCQ",
+                "options": [
+                    {
+                        "name": "option2-1",
+                        "content": "content2-1",
+                        "image": "image2-1",
+                        "height": "200",
+                        "width": null
+                    },
+                    {
+                        "name": "option2-2",
+                        "content": "content2-2",
+                        "image": "image2-2",
+                        "height": "200",
+                        "width": null
+                    },
+                    {
+                        "name": "option2-3",
+                        "content": "content2-3",
+                        "image": "image2-3",
+                        "height": "200",
+                        "width": null
+                    }
+                ]
+            },
+            "correct": "option2-2"
+        },
+
+        */
+
+
+
+        var data = 
+        [
+            {
+                "title": "0. 從零開始的網頁<del>絕對不是因為我怕搞混</del>",
+                "description": "下列何者與\"兔子\"最不相關?",
+                "image": null,
+                "answers": {
+                    "type": "MCQ",
+                    "options": [
+                        {
+                            "name": "option0-1",
+                            "content": "拉菲，作品:碧藍航線",
+                            "image": "https://patchwiki.biligame.com/images/blhx/2/2c/kl69miqcqvdx8myswuwbstxrzuyzn0w.jpg",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option0-2",
+                            "content": "月雪都子，作品:蔚藍檔案",
+                            "image": "https://bluearchive.wikiru.jp/?plugin=attach&refer=%E3%83%9F%E3%83%A4%E3%82%B3&openfile=%E3%83%9F%E3%83%A4%E3%82%B3.png",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option0-3",
+                            "content": "鏡華，作品:公主連結",
+                            "image": "https://img.gamewith.jp/article_tools/pricone-re/gacha/94457_main.jpg",
+                            "height": "100",
+                            "width": null
+                        }
+                    ]
+                },
+                "correct": "option0-3"
+            },
+            {
+                "title": "1. 公關危機!",
+                "description": "某天，遊戲內的活動獎勵多給了<br>雖然緊急修正了，但是少數玩家還是獲得了大量的獎勵<br>怎麼做不僅會讓玩家原諒，還能讓玩家更喜歡?",
+                "image": null,
+                "answers": {
+                    "type": "MCQ",
+                    "options": [
+                        {
+                            "name": "option1-1",
+                            "content": "將錯就錯 管他的",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        },
+                        {
+                            "name": "option1-2",
+                            "content": "給所有玩家比多給的獎勵更多的補償",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        },
+                        {
+                            "name": "option1-3",
+                            "content": "把所有玩家的存檔回朔到出問題前",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        }
+                    ]
+                },
+                "correct": "option1-2"
+            },
+            {
+                "title": "2. @許雷神",
+                "description": "人在做天在看，______________。",
+                "image": null,
+                "answers": {
+                    "type": "cloze",
+                    "options": null
+                },
+                "correct": "陽葵在我身上喘"
+            },
+            {
+                "title": "3. 老套戀愛遊戲劇情出現了!",
+                "description": "有四個女孩子喜歡你，要選擇哪一個才能完美的解決?",
+                "image": null,
+                "answers": {
+                    "type": "MCQ",
+                    "options": [
+                        {
+                            "name": "option3-1",
+                            "content": "",
+                            "image": "https://hikarifield.co.jp/aokana/img/character/chara01_ph1_b.png",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option3-2",
+                            "content": "",
+                            "image": "https://hikarifield.co.jp/aokana/img/character/chara02_ph1_b.png",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option3-3",
+                            "content": "",
+                            "image": "https://hikarifield.co.jp/aokana/img/character/chara03_ph1_b.png",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option3-4",
+                            "content": "",
+                            "image": "https://hikarifield.co.jp/aokana/img/character/chara04_ph1_b.png",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option3-5",
+                            "content": "我全都要",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        }
+                    ]
+                },
+                "correct": "option3-5"
+            },
+            {
+                "title": "4. 歡樂送!",
+                "description": "某天，不常吃麥X勞的你突然聽見有外送到你家門口<br>你會怎麼做?",
+                "image": null,
+                "answers": {
+                    "type": "MCQ",
+                    "options": [
+                        {
+                            "name": "option4-1",
+                            "content": "去外面看看吧!或許撿到便宜!",
+                            "image": "https://s7d1.scene7.com/is/image/mcdonalds/fries-mid:product-header-desktop?wid=830&hei=458&dpr=off",
+                            "height": "100",
+                            "width": null
+                        },
+                        {
+                            "name": "option4-2",
+                            "content": "不對這是個陷阱別去",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        }
+                    ]
+                },
+                "correct": "option4-2"
+            },
+            {
+                "title": "5. 量體重",
+                "description": "在蔚藍檔案中，\"優香\"這個角色的體重為何?(kg)",
+                "image": "https://bluearchive.wikiru.jp/?plugin=attach&refer=%E3%83%A6%E3%82%A6%E3%82%AB&openfile=%E3%83%A6%E3%82%A6%E3%82%AB_0.png",
+                "height": "300",
+                "width": "147",
+                "answers": {
+                    "type": "cloze",
+                    "options": null
+                },
+                "correct": "100"
+            },
+            {
+                "title": "6. WWW",
+                "description": "影片跑馬燈，又稱影片彈幕<br>最早是在哪個影音平台上出現?",
+                "image": null,
+                "answers": {
+                    "type": "MCQ",
+                    "options": [
+                        {
+                            "name": "option6-1",
+                            "content": "Niconico動畫",
+                            "image": "https://upload.wikimedia.org/wikipedia/commons/a/a5/%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%28eR%29%E3%83%AD%E3%82%B4.2.png",
+                            "height": "80",
+                            "width": null
+                        },
+                        {
+                            "name": "option6-2",
+                            "content": "bilibili",
+                            "image": "https://upload.wikimedia.org/wikipedia/zh/thumb/b/bd/Bilibili_Logo_Blue.svg/1920px-Bilibili_Logo_Blue.svg.png",
+                            "height": "80",
+                            "width": null
+                        },
+                        {
+                            "name": "option6-3",
+                            "content": "巴哈姆特動畫瘋",
+                            "image": "https://i2.bahamut.com.tw/anime/crazy_logo.png",
+                            "height": "80",
+                            "width": null
+                        }
+                    ]
+                },
+                "correct": "option6-1"
+            },
+            {
+                "title": "7. 「えへっ」てなんだよ…!!",
+                "description": "每個角色的背後都有個努力詮釋角色的聲優<br>請問哪個角色的聲優不是古賀葵?",
+                "image": null,
+                "answers": {
+                    "type": "MCQ",
+                    "options": [
+                        {
+                            "name": "option7-1",
+                            "content": "國見玉，作品:緋染天空",
+                            "image": "https://tw.heaven-burns-red.com/assets/images/common/character/31a/img_stand_06.png",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option7-2",
+                            "content": "四宮輝夜，作品:輝夜姬想讓人告白~天才們的戀愛頭腦戰~",
+                            "image": "https://kaguya.love/1st/assets/img/chara/01kaguya/img_main01.png",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option7-3",
+                            "content": "神里綾華，作品:原神",
+                            "image": "https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20210715/2021071516050844741.png",
+                            "height": "100",
+                            "width": null
+                        }
+                    ]
+                },
+                "correct": "option7-3"
+            },
+            {
+                "title": "8. 銀河XX俠!",
+                "description": "在崩壞：星穹鐵道中，主角第一把武器類型是?",
+                "image": null,
+                "answers": {
+                    "type": "cloze",
+                    "options": null
+                },
+                "correct": "球棒"
+            },
+            {
+                "title": "9. 一年兩次的盛會阿!!!",
+                "description": "有在追蹤二次元文化的應該對這個場館不陌生<br>它的名子叫做?",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/20030727_27_July_2003_Tokyo_International_Exhibition_Center_Big_Sight_Odaiba_Tokyo_Japan.jpg/1024px-20030727_27_July_2003_Tokyo_International_Exhibition_Center_Big_Sight_Odaiba_Tokyo_Japan.jpg",
+                "height": "300",
+                "width": "401",
+                "answers": {
+                    "type": "MCQ",
+                    "options": [
+                        {
+                            "name": "option9-1",
+                            "content": "東京國際展示場",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        },
+                        {
+                            "name": "option9-2",
+                            "content": "東京都立産業貿易中心",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        },
+                        {
+                            "name": "option9-3",
+                            "content": "幕張展覽館",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        }
+                    ]
+                },
+                "correct": "option9-1"
+            },
+            {
+                "title": "10. 酪梨。",
+                "description": "下列蘿莉角色何者為合法蘿莉?(年齡>18歲)",
+                "image": null,
+                "answers": {
+                    "type": "MCQ",
+                    "options": [
+                        {
+                            "name": "option10-1",
+                            "content": "無月，作品:蔚藍檔案",
+                            "image": "https://lwi.nexon.com/m_ba/brand/char/08_l_mutsuki.png",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option10-2",
+                            "content": "納西妲，作品:原神",
+                            "image": "https://webstatic.hoyoverse.com/upload/contentweb/2022/10/26/fe684624008db25ac4b44ea4704f9ba0_3861214443098554336.png",
+                            "height": "100",
+                            "width": null
+                        },
+                        {
+                            "name": "option10-3",
+                            "content": "櫻井桃華，作品:偶像大師 灰姑娘女孩 U149",
+                            "image": "https://cinderella-u149-anime.idolmaster-official.jp/assets/images/common/character/chara_img_2.png",
+                            "height": "200",
+                            "width": null
+                        }
+                    ]
+                },
+                "correct": "option10-2"
+            },
+            {
+                "title": "11. 肥恐龍",
+                "description": "在碧藍航線中，<br>因為有位角色因為過重而被稱為肥恐龍，<br>請問是哪位角色?",
+                "image": null,
+                "answers": {
+                    "type": "cloze",
+                    "options": null
+                },
+                "correct": "可畏"
+            },
+            {
+                "title": "12. 太卜司。",
+                "description": "在崩壞:星穹鐵道中，\"符玄\"這個角色的別稱為何?",
+                "image": "https://webstatic.hoyoverse.com/upload/op-public/2023/08/28/35f7231fce35b5f4ca665551f5523291_6275434992352656036.png",
+                "height": "400",
+                "width": "466",
+                "answers": {
+                    "type": "MCQ",
+                    "options": [
+                        {
+                            "name": "option12-1",
+                            "content": "Type-A",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        },
+                        {
+                            "name": "option12-2",
+                            "content": "Type-B",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        },
+                        {
+                            "name": "option12-3",
+                            "content": "Type-C",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        }
+                    ]
+                },
+                "correct": "option12-3"
+            },
+            {
+                "title": "13. 這是我老婆。",
+                "description": "如果前13題是單純為了做作業時稍微自肥一下，<br>那這題就真的是單純的自肥題目了<br>請問下列哪個角色是我最喜歡的角色?",
+                "image": null,
+                "answers": {
+                    "type": "MCQ",
+                    "options": [
+                        {
+                            "name": "option13-all",
+                            "content": "拉菲",
+                            "image": "96660300_p0.png",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option13-all",
+                            "content": "拉菲",
+                            "image": "90568354_p0.jpg",
+                            "height": "200",
+                            "width": null
+                        },
+                        {
+                            "name": "option13-all",
+                            "content": "拉菲",
+                            "image": "77944547_p0.jpg",
+                            "height": "200",
+                            "width": null
+                        }
+                    ]
+                },
+                "correct": "option13-all"
+            },
+        ];
+        data = JSON.stringify(data);
+        localStorage.setItem("data", data);
+        
+        window.onload = function()
+        {
+            window.location.href = "question.html";
+        }
+            
+        </script>
+    </head>
+    
+</html>
