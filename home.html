@@ -3,18 +3,27 @@
         <title>home</title>
     </head>
     <script>
-        var name = window.prompt("input your name");
-        localStorage.setItem("name", name);
+        function buttonClick()
+        {
+            var name = document.getElementById("name").value;
+            localStorage.setItem("name", name);
+            document.getElementById("start").disabled = false;
+        }
     </script>
     <body>
         
         <center>
             <script>
-                document.writeln("<marquee>Welcome <font color=red>"+name+"</font>!</marquee><br>");
+                // document.writeln("<marquee>Welcome <font color=red>"+name+"</font>!</marquee><br>");
             </script>
-            <h1>home</h1>
-            <button onclick="window.location.href='data.html'">start</button>
+            <h1>第0屆千円杯(??二次元問答大賽</h1>
+            <h2 style="color:red">&lt;&lt;地板很油小心地滑&gt;&gt;</h2>
+            <p>請輸入你的名子: <input type="text" id="name"> <button onclick="buttonClick();">submit</button> </p>
+            <button id="start" onclick="window.location.href='data.html'">start</button>
         </center>
         
     </body>
+    <script>
+        document.getElementById("start").disabled = true;
+    </script>
 </html>
