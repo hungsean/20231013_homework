@@ -4,205 +4,135 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>question title</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <script>
         var data = localStorage.getItem("data");
         data = JSON.parse(data);
-        var num = 0;
         var sc = 0;
-        var question;
-        function loadQuestion()
-        {
-            updateMarquee();
-            question = data[num];
-            document.getElementById("question-title").innerHTML = question.title;
-            document.getElementById("question-description").innerHTML = question.description;
-            if (question.image === null)
-            {
-                document.getElementById("question-image").style.display = "none";
-            }
-            else 
-            {
-                document.getElementById("question-image").src = question.image;
-                document.getElementById("question-image").style.display = "block";
-                if (question.width !== null)
-                {
-                    document.getElementById("question-image").width = question.width;
-                }
-                else
-                {
-                    document.getElementById("question-image").width = "";
-                }
-                if (question.height !== null)
-                {
-                    document.getElementById("question-image").height = question.height;
-                }
-            }
-            var type = question.answers.type;
-            if (type === "MCQ")
-            {
-                document.getElementById("radio-options").style.display = "block";
-                document.getElementById("text-options").style.display = "none";
-            }
-            else if (type === "cloze")
-            {
-                document.getElementById("radio-options").style.display = "none";
-                document.getElementById("text-options").style.display = "block";
-                document.getElementById("text-option").value = "";
-            }
-            var options = question.answers.options;
-            if (options !== null)
-            {
-                console.log(num + ":" + options.length);
-                for(var i = 0; i < options.length; i++)
-                {
-                    var option = options[i];
-                    var radio = document.getElementById("radio-option-" + (i+1).toString());
-                    radio.value = option.name;
-                    radio.style.display = "";
-                    radio.checked = false;
-                    var content = document.getElementById("radio-content-" + (i+1).toString());
-                    content.innerHTML = option.content;
-                    var image = document.getElementById("radio-image-" + (i+1).toString());
-                    // --- debug ---
-                    console.log(i + ":" + option.image);
-                    // --- debug end ---
-                    if (option.image === null)
-                    {
-                        image.style.display = "none";
-                    }
-                    else 
-                    {
-                        image.style.display = "block";
-                        image.src = option.image;
-                        if (option.height !== null)
-                        {
-                            image.height = option.height;
-                        }
-                        if (option.width !== null)
-                        {
-                            image.width = option.width;
-                        }
-                    }
-                }
-                for(var i = options.length; i < 5; i++)
-                {
-                    var radio = document.getElementById("radio-option-" + (i+1).toString());
-                    radio.value = "";
-                    radio.innerHTML = "";
-                    radio.style.display = "none";
-                    var content = document.getElementById("radio-content-" + (i+1).toString());
-                    content.innerHTML = "";
-                    var image = document.getElementById("radio-image-" + (i+1).toString());
-                    image.style.display = "none";
-                }
-            }
-            document.getElementById("result").innerHTML = "";
-            document.getElementById("check").disabled = false;
-            document.getElementById("next").disabled = true;
-        }
-        function nextQuestion()
-        {
-            if (num < data.length - 1)
-            {
-                num++;
-                loadQuestion();
-            }
-            else 
-            {
-                localStorage.setItem("score", sc);
-                window.location.href = "result.html";
-            }
-            
-        }
-        function correct()
+        // var question;
+        
+        function correct(num)
         {
             sc += 5;
-            document.getElementById("result").innerHTML = "correct";
-            
-            document.getElementById("check").disabled = true;
-            document.getElementById("next").disabled = false;
+            const result = document.getElementById("result-" + num.toString());
+            result.innerHTML = "第" + num + "題: correct";
+            result.className = "correct";
+
         }
-        function wrong()
+        function wrong(num)
         {
-            document.getElementById("result").innerHTML = "wrong";
-            
-            document.getElementById("check").disabled = true;
-            document.getElementById("next").disabled = false;
+            const result = document.getElementById("result-" + num.toString());
+            result.innerHTML = "第" + num + "題: wrong";
+            result.className = "wrong";
         }
         function checkAnswer()
         {
-            var type = question.answers.type;
-            if (type === "MCQ")
+            
+            for(var i = 0; i < data.length; i ++)
             {
-                var options = question.answers.options;
-                for(var i = 0; i < options.length; i++)
+                if (i === 13)
                 {
-                    var option = options[i];
-                    var radio = document.getElementById("radio-option-" + (i+1).toString());
-                    if (radio.checked)
+                    this.correct(i);
+                    continue;
+                }
+                var question = data[i];
+                if (question.answers.type === "MCQ")
+                {
+                    var correct = question.correct;
+                    var correctOption = document.getElementById(correct.toString());
+                    if (correctOption.checked)
                     {
-                        if (radio.value === question.correct)
-                        {
-                            correct();
-                        }
-                        else 
-                        {
-                            wrong();
-                        }
+                        this.correct(i);
+                    }
+                    else
+                    {
+                        this.wrong(i);
+                    }
+                }
+                else if (question.answers.type === "cloze")
+                {
+                    var correct = question.correct;
+                    const answer = document.getElementById("text-option" + question.answers.options);
+                    if (correct === answer.value)
+                    {
+                        correct(i);
+                    }
+                    else
+                    {
+                        wrong(i);
                     }
                 }
             }
-            else if (type === "cloze")
+            // document.getElementById("check").disabled = true;
+            document.getElementById("changeAnswer").disabled = false;
+            document.getElementById("home").disabled = false;
+
+        }
+        function onePageHTML()
+        {
+            for(const question of data)
             {
-                var text = document.getElementById("text-option").value;
-                // --- debug ---
-                console.log(text);
-                // --- debug end ---
-                if (text === question.correct)
+                document.writeln("<div class=\"question\">");
+                document.writeln("<h2 class=\"head\">" + question.title + "</h2>");
+                document.writeln("<p class=\"description\">" + question.description + "</p>");
+                if (question.image !== null)
                 {
-                    correct();
+                    document.writeln("<img src=\"" + question.image + "\" class=\"question_image\" height=\"" + question.height + "\"><br>");
                 }
-                else 
+                if (question.answers.type === "MCQ")
                 {
-                    wrong();
+                    document.writeln("<div class=\"choices\">");
+                    for(const option of question.answers.options)
+                    {
+                        document.writeln("<div class=\"option\">");
+                        if (option.image !== null)
+                        {
+                            document.writeln("<img src=\"" + option.image + "\" class=\"option img\"><br>");
+                        }
+                        document.writeln("<div class=\"text\">");
+                        document.writeln("<input type=\"radio\" name=\"option\" value=\"" + option.name + "\" id=\"" + option.name + "\" class=\"radio\"><a >" + option.content + "</a>");
+                        document.writeln("</div>");
+                        document.writeln("</div>");
+                    }
+                    document.writeln("</div>");
                 }
+                else if (question.answers.type === "cloze")
+                {
+                    document.writeln("<div>");
+                    document.writeln("<input type=\"text\" class=\"text_input\" + id=\"text-option" + question.answers.options + "\">");
+                    document.writeln("</div>");
+                }
+                document.writeln("</div>");
+                document.writeln("<hr>");
             }
         }
-        function updateMarquee()
+        function clearResult()
         {
-            var name = localStorage.getItem("name");
-            document.getElementById("marquee").innerHTML = "Welcome <font color=red>"+name+"</font>! score: " + sc;
-        }  
+            document.getElementById("checkAnswer").disabled = false;
+            for(var i = 0; i < data.length; i++)
+            {
+                document.getElementById("result-" + i.toString()).innerHTML = "";
+            }
+        }
     </script>
     <body>
         <div>
-            <center>
-                <marquee id="marquee"></marquee><br>
-                <h1 id="question-title"></h1>
-                <p id="question-description"></p>
-                <img id="question-image"><br>
-                <div id="radio-options">
-                    <input type="radio" id="radio-option-1" name="answers" value="1"><a id="radio-content-1"></a><img id="radio-image-1"><br>
-                    <input type="radio" id="radio-option-2" name="answers" value="2"><a id="radio-content-2"></a><img id="radio-image-2"><br>
-                    <input type="radio" id="radio-option-3" name="answers" value="3"><a id="radio-content-3"></a><img id="radio-image-3"><br>
-                    <input type="radio" id="radio-option-4" name="answers" value="4"><a id="radio-content-4"></a><img id="radio-image-4"><br>
-                    <input type="radio" id="radio-option-5" name="answers" value="5"><a id="radio-content-5"></a><img id="radio-image-5"><br>
-                </div>
-                <div id="text-options">
-                    <input type="text" id="text-option"><br>
-                </div>
-                <br>
-                <button id="check" onclick="checkAnswer()">check</button><br>
-                <br>
-                <a id="result"></a><br>
-                <br>
-                <button id="next" onclick="nextQuestion()">Next</button><br>
+            <button onclick="window.location.href='data.html'">reload</button>
+            <script>
                 
-                <script>
-                    loadQuestion();
-                </script>
-            </center>
+                onePageHTML();
+            </script>
+            <h1>確認好答案了嗎?</h1>
+            <button onclick="checkAnswer();this.disabled = true;" class="checkAnswer" id="checkAnswer">對的</button>
+            <script>
+                for(var i = 0; i < data.length; i++)
+                {
+                    document.writeln("<p id=\"result-" + i.toString() + "\"></p>");
+                }
+            </script>
+            <button class="checkAnswer" id="changeAnswer" onclick="clearResult();" disabled>讓我改一下答案</button>
+            <button class="checkAnswer" id="home" onclick="window.location.href='home.html'" disabled>home</button>
             
         </div>
 
