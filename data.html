@@ -86,11 +86,12 @@
                 "correct": "option0-3"
             },
             {
+                "name": "question1",
                 "title": "1. 公關危機!",
-                "description": "某天，遊戲內的活動獎勵多給了<br>雖然緊急修正了，但是少數玩家還是獲得了大量的獎勵<br>怎麼做不僅會讓玩家原諒，還能讓玩家更喜歡?",
+                "description": "某天，遊戲內的活動獎勵多給了<br>雖然緊急修正了，但是少數玩家還是獲得了大量的獎勵<br>怎麼做會是合理的決策呢?",
                 "image": null,
                 "answers": {
-                    "type": "MCQ",
+                    "type": "select-multiple",
                     "options": [
                         {
                             "name": "option1-1",
@@ -115,7 +116,7 @@
                         }
                     ]
                 },
-                "correct": "option1-2"
+                "correct": ["option1-2", "option1-3"]
             },
             {
                 "title": "2. @許雷神",
@@ -132,46 +133,39 @@
                 "description": "有四個女孩子喜歡你，要選擇哪一個才能完美的解決?",
                 "image": null,
                 "answers": {
-                    "type": "MCQ",
+                    "type": "checkbox",
                     "options": [
                         {
                             "name": "option3-1",
-                            "content": "",
+                            "content": "倉科明日香",
                             "image": "image\\q3\\01.png",
                             "height": "200",
                             "width": null
                         },
                         {
                             "name": "option3-2",
-                            "content": "",
+                            "content": "鳶澤美咲",
                             "image": "image\\q3\\02.png",
                             "height": "200",
                             "width": null
                         },
                         {
                             "name": "option3-3",
-                            "content": "",
+                            "content": "有坂真白",
                             "image": "image\\q3\\03.png",
                             "height": "200",
                             "width": null
                         },
                         {
                             "name": "option3-4",
-                            "content": "",
+                            "content": "市之瀨莉佳",
                             "image": "image\\q3\\04.png",
                             "height": "200",
-                            "width": null
-                        },
-                        {
-                            "name": "option3-5",
-                            "content": "我全都要",
-                            "image": null,
-                            "height": null,
                             "width": null
                         }
                     ]
                 },
-                "correct": "option3-5"
+                "correct": ["option3-1", "option3-2", "option3-3", "option3-4"]
             },
             {
                 "title": "4. 歡樂送!",
@@ -199,16 +193,39 @@
                 "correct": "option4-2"
             },
             {
+                "name": "question5",
                 "title": "5. 量體重",
                 "description": "在蔚藍檔案中，\"優香\"這個角色的體重為何?(kg)",
                 "image": "https://bluearchive.wikiru.jp/?plugin=attach&refer=%E3%83%A6%E3%82%A6%E3%82%AB&openfile=%E3%83%A6%E3%82%A6%E3%82%AB_0.png",
                 "height": "300",
                 "width": "147",
                 "answers": {
-                    "type": "cloze",
-                    "options": 5
+                    "type": "select",
+                    "options": [
+                        {
+                            "name": "option5-1",
+                            "content": "50kg",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        },
+                        {
+                            "name": "option5-2",
+                            "content": "70kg",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        },
+                        {
+                            "name": "option5-3",
+                            "content": "100kg",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        }
+                    ]
                 },
-                "correct": "100"
+                "correct": "option5-3"
             },
             {
                 "title": "6. WWW",
@@ -275,14 +292,37 @@
                 "correct": "option7-3"
             },
             {
+                "name": "question8",
                 "title": "8. 銀河XX俠!",
                 "description": "在崩壞：星穹鐵道中，主角第一把武器類型是?",
                 "image": null,
                 "answers": {
-                    "type": "cloze",
-                    "options": 8
+                    "type": "select",
+                    "options": [
+                        {
+                            "name": "option8-1",
+                            "content": "單手劍",
+                            "image": null,
+                            "height": null, 
+                            "width": null
+                        },
+                        {
+                            "name": "option8-2",
+                            "content": "步槍",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        },
+                        {
+                            "name": "option8-3",
+                            "content": "球棒",
+                            "image": null,
+                            "height": null,
+                            "width": null
+                        }
+                    ]
                 },
-                "correct": "球棒"
+                "correct": "option8-3"
             },
             {
                 "title": "9. 一年兩次的盛會阿!!!",
@@ -361,24 +401,25 @@
                 "correct": "可畏"
             },
             {
+                "name": "question12",
                 "title": "12. 太卜司。",
-                "description": "在崩壞:星穹鐵道中，\"符玄\"這個角色的別稱為何?",
+                "description": "在崩壞:星穹鐵道中，下列何者<b>不是</b>\"符玄\"這個角色的別稱?",
                 "image": "https://webstatic.hoyoverse.com/upload/op-public/2023/08/28/35f7231fce35b5f4ca665551f5523291_6275434992352656036.png",
                 "height": "400",
                 "width": "466",
                 "answers": {
-                    "type": "MCQ",
+                    "type": "select-multiple",
                     "options": [
                         {
                             "name": "option12-1",
-                            "content": "Type-A",
+                            "content": "符卿",
                             "image": null,
                             "height": null,
                             "width": null
                         },
                         {
                             "name": "option12-2",
-                            "content": "Type-B",
+                            "content": "符將軍",
                             "image": null,
                             "height": null,
                             "width": null
@@ -392,31 +433,31 @@
                         }
                     ]
                 },
-                "correct": "option12-3"
+                "correct": ["option12-1", "option12-3"]
             },
             {
                 "title": "13. 這是我老婆。",
                 "description": "如果前13題是單純為了做作業時稍微自肥一下，<br>那這題就真的是單純的自肥題目了<br>請問下列哪個角色是我最喜歡的角色?",
                 "image": null,
                 "answers": {
-                    "type": "MCQ",
+                    "type": "checkbox",
                     "options": [
                         {
-                            "name": "option13-all",
+                            "name": "option13-1",
                             "content": "拉菲",
                             "image": "image\\q11\\96660300_p0.png",
                             "height": "200",
                             "width": null
                         },
                         {
-                            "name": "option13-all",
+                            "name": "option13-2",
                             "content": "拉菲",
                             "image": "image\\q11\\90568354_p0.jpg",
                             "height": "200",
                             "width": null
                         },
                         {
-                            "name": "option13-all",
+                            "name": "option13-3",
                             "content": "拉菲",
                             "image": "image\\q11\\77944547_p0.jpg",
                             "height": "200",
@@ -424,7 +465,18 @@
                         }
                     ]
                 },
-                "correct": "option13-all"
+                "correct": ["option13-1", "option13-2", "option13-3"]
+            },
+            {
+                "name": "question14",
+                "title": "14. 反饋區",
+                "description": "如果你有任何想要反饋的地方，<br>歡迎在這裡寫下來!",
+                "image": null,
+                "answers": {
+                    "type": "textarea",
+                    "options": null
+                },
+                "correct": null
             },
         ];
         data = JSON.stringify(data);

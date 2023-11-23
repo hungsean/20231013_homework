@@ -10,6 +10,9 @@
         var data = localStorage.getItem("data");
         data = JSON.parse(data);
         var sc = 0;
+        var colorRed = 0;
+        var colorGreen = 0;
+        var colorBlue = 0;
         // var question;
         
         function correct(num)
@@ -26,16 +29,23 @@
             result.innerHTML = "第" + num + "題: wrong";
             result.className = "wrong";
         }
+        function freeAnswer(num)
+        {
+            sc += 5;
+            const result = document.getElementById("result-" + num.toString());
+            result.innerHTML = "第" + num + "題: free answer";
+            result.className = "freeAnswer";
+        }
         function checkAnswer()
         {
             
             for(var i = 0; i < data.length; i ++)
             {
-                if (i === 13)
-                {
-                    this.correct(i);
-                    continue;
-                }
+                // if (i === 13)
+                // {
+                //     this.correct(i);
+                //     continue;
+                // }
                 var question = data[i];
                 if (question.answers.type === "MCQ")
                 {
@@ -63,10 +73,95 @@
                         wrong(i);
                     }
                 }
+                else if (question.answers.type === "checkbox")
+                {
+                    var corrects = question.correct;
+                    var correctCount = 0;
+                    for(const correct of corrects)
+                    {
+                        var correctOption = document.getElementById(correct.toString());
+                        if (correctOption.checked)
+                        {
+                            correctCount += 1;
+                        }
+                    }
+                    if (correctCount === corrects.length)
+                    {
+                        this.correct(i);
+                    }
+                    else
+                    {
+                        this.wrong(i);
+                    }
+                }
+                else if (question.answers.type === "select")
+                {
+                    var correct = question.correct;
+                    var correctOption = document.getElementById(question.name);
+                    if (correct === correctOption.value)
+                    {
+                        this.correct(i);
+                    }
+                    else
+                    {
+                        this.wrong(i);
+                    }
+                }
+                else if (question.answers.type === "select-multiple")
+                {
+                    var corrects = question.correct;
+                    console.log(corrects);
+                    var correctCount = 0;
+
+                    var selectedOptions = document.getElementById(question.name).selectedOptions;
+                    
+                    for(const correct of corrects)
+                    {
+                        for(const selectedOption of selectedOptions)
+                        {
+                            console.log(selectedOption.value + "vs" + correct);
+                            if (correct === selectedOption.value)
+                            {
+                                correctCount += 1;
+                            }
+                        }
+                    }
+                    if (correctCount === corrects.length)
+                    {
+                        this.correct(i);
+                    }
+                    else
+                    {
+                        this.wrong(i);
+                    }
+                }
+                else if (question.answers.type === "textarea")
+                {
+                    var correct = question.correct;
+                    if (correct === null)
+                    {
+                        freeAnswer(i);
+                        continue;
+                    }
+                    const answer = document.getElementById(question.name);
+                    if (correct === answer.value)
+                    {
+                        correct(i);
+                    }
+                    else
+                    {
+                        wrong(i);
+                    }
+                }
+                else
+                {
+                    console.log("error");
+                }
             }
             // document.getElementById("check").disabled = true;
             document.getElementById("changeAnswer").disabled = false;
             document.getElementById("home").disabled = false;
+            document.getElementById("score").innerHTML = sc;
 
         }
         function onePageHTML()
@@ -103,6 +198,53 @@
                     document.writeln("<input type=\"text\" class=\"text_input\" + id=\"text-option" + question.answers.options + "\">");
                     document.writeln("</div>");
                 }
+                else if (question.answers.type === "checkbox")
+                {
+                    document.writeln("<div class=\"choices\">");
+                    for(const option of question.answers.options)
+                    {
+                        document.writeln("<div class=\"option\">");
+                        if (option.image !== null)
+                        {
+                            document.writeln("<img src=\"" + option.image + "\" class=\"option img\"><br>");
+                        }
+                        document.writeln("<div class=\"text\">");
+                        document.writeln("<input type=\"checkbox\" name=\"option\" value=\"" + option.name + "\" id=\"" + option.name + "\" class=\"checkbox\"><a >" + option.content + "</a>");
+                        document.writeln("</div>");
+                        document.writeln("</div>");
+                    }
+                    document.writeln("</div>");
+                }
+                else if (question.answers.type === "select")
+                {
+                    document.writeln("<div class=\"select-options\">");
+                    document.writeln("<select id =\"" + question.name + "\">");
+                    for(const option of question.answers.options)
+                    {
+                        document.writeln("<option value=\"" + option.name + "\">" + option.content + "</option>");
+                    }
+                    document.writeln("</select>");
+                    document.writeln("</div>");
+                }
+                else if (question.answers.type === "select-multiple")
+                {
+                    document.writeln("<div class=\"select-options\">");
+                    document.writeln("<select multiple id =\"" + question.name + "\">");
+                    for(const option of question.answers.options)
+                    {
+                        document.writeln("<option value=\"" + option.name + "\">" + option.content + "</option>");
+                    }
+                    document.writeln("</select>");
+                    document.writeln("</div>");
+                }
+                else if (question.answers.type === "textarea")
+                {
+                    document.writeln("<div>");
+                    document.writeln("<textarea class=\"textarea_input\" id=\"" + question.name + "\"></textarea>");
+                    document.writeln("</div>");
+                }
+
+
                 document.writeln("</div>");
                 document.writeln("<hr>");
             }
@@ -114,22 +256,41 @@
             {
                 document.getElementById("result-" + i.toString()).innerHTML = "";
             }
+            document.getElementById("score").innerHTML = "";
+            sc = 0;
+        }
+        function setColor()
+        {
+            var titleElement = document.getElementById("colorfulTitle");
+            setInterval(changeColor, 20);
+        }
+        function changeColor() 
+        {
+            var titleElement = document.getElementById("colorfulTitle");
+            colorRed = (colorRed + 10) % 256;
+            colorGreen = (colorGreen - 2) % 256;
+            colorBlue = (colorBlue + 3) % 256;
+            titleElement.style.color = "rgb(" + colorRed + "," + colorGreen + "," + colorBlue + ")";
         }
     </script>
     <body>
         <div>
-            <button onclick="window.location.href='data.html'">reload</button>
+            <!-- <button onclick="window.location.href='data.html'">reload</button> -->
+            <h1 id="colorfulTitle" style="text-align: center;font-size:80px;">迷幻標題</h1>
             <script>
-                
                 onePageHTML();
+                setColor();
             </script>
             <h1>確認好答案了嗎?</h1>
             <button onclick="checkAnswer();this.disabled = true;" class="checkAnswer" id="checkAnswer">對的</button>
             <script>
+                console.log(data.length);
                 for(var i = 0; i < data.length; i++)
                 {
                     document.writeln("<p id=\"result-" + i.toString() + "\"></p>");
                 }
+                document.writeln("<p>分數: <span id=\"score\">" + sc + "</span></p>");
+                
             </script>
             <button class="checkAnswer" id="changeAnswer" onclick="clearResult();" disabled>讓我改一下答案</button>
             <button class="checkAnswer" id="home" onclick="window.location.href='home.html'" disabled>home</button>

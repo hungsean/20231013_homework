@@ -6,7 +6,9 @@
 .head{
     padding: 0px 0px 0px 20px;
     font-size: 30px;
+    
 }
+
 
 .description{
     padding: 0px 0px 0px 20px;
@@ -56,6 +58,12 @@
 {
     margin: 5px;
 }
+
+.checkbox
+{
+    margin: 5px;
+}
+
 .text_input
 {
     margin-left: 20px;
@@ -66,6 +74,21 @@
     border: 1px solid black;
     padding: 2px 5px 2px 5px;
 }
+
+.select-options
+{
+    margin-left: 20px;
+    
+}
+
+.textarea_input
+{
+    margin-left: 20px;
+    width: 400px;
+    height: 150px;
+}
+
+
 .checkAnswer
 {
     margin-left: 20px;
@@ -84,5 +107,10 @@
 .wrong
 {
     color: red;
+    font-weight: bold;
+}
+.freeAnswer
+{
+    color: rgb(0, 132, 255);
     font-weight: bold;
 }
